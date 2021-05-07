@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+option go_package = "ezcoinrobot/grpc";
+
+// The greeting service definition.
+service EZCoinRobot {
+  // Sends a greeting
+  rpc CreateRobot (RobotRequest) returns (CreateReply) {}
+  rpc RobotStatus (RobotRequest) returns (StatusReply) {}
+  rpc StopRobot (RobotRequest) returns (StatusReply) {}
+  rpc StartRobot (RobotRequest) returns (StatusReply) {}
+  rpc RestartRobot (RobotRequest) returns (StatusReply) {}
+  rpc MigrateRobot (RobotMigrateRequest) returns (StatusReply) {}
+  rpc CreateFundingRobot (FundingRobotRequest) returns (CreateFundingReply) {}
+  rpc FundingRobotStatus (FundingRobotRequest) returns (FundingStatusReply) {}
+  rpc StopFundingRobot (FundingRobotRequest) returns (FundingStatusReply) {}
+  rpc StartFundingRobot (FundingRobotRequest) returns (FundingStatusReply) {}
+  rpc RestartFundingRobot (FundingRobotRequest) returns (FundingStatusReply) {}
+  rpc MigrateFundingRobot (FundingRobotMigrateRequest) returns (FundingStatusReply) {}
+}
+
+// The request message containing the user's name.
+message RobotRequest {
+  string name = 1;
+  string currency = 2;
+}
+
+// The request message containing the user's name.
+message RobotMigrateRequest {
+  string name = 1;
+  string fromCurrency = 2;
+  string toCurrency = 3;
+}
+
+// The response message containing the greetings
+message CreateReply {
+  int32 code = 1;
+  string message = 2;
+}
+
+// The response state containing the status
+message StatusReply {
+  int32 code = 1;
+  string message = 2;
+  string state = 3;
+}
+
+// The request message containing the user's name.
+message FundingRobotRequest {
+  string name = 1;
+  string currency = 2;
+}
+
+// The response message containing the greetings
+message CreateFundingReply {
+  int32 code = 1;
+  string message = 2;
+}
+
+
+// The response state containing the status
+message FundingStatusReply {
+  int32 code = 1;
+  string message = 2;
+  string state = 3;
+}
+
+// The request message containing the user's name.
+message FundingRobotMigrateRequest {
+  string name = 1;
+  string fromCurrency = 2;
+  string toCurrency = 3;
+}
